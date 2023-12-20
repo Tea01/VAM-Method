@@ -1,6 +1,6 @@
 import numpy as np
 from modules.vam import vogels_approximation_method
-from modules.utils import calculate_total_cost, print_allocation, update_supply_demand
+from modules.utils import calculate_total_cost
 
 # EXAMPLE 1
 supply = np.array([22, 25, 10])
@@ -11,7 +11,7 @@ cost_matrix = np.array([
     [15, 18, 6, 14]
 ])
 
-# Example 2
+# # Example 2
 # supply = np.array([300, 400, 500])
 # demand = np.array([250, 350, 400, 200])
 # cost_matrix = np.array([
