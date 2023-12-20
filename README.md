@@ -1,17 +1,19 @@
-# Vogel Approximation Method
+# Vogel Approximation Method (VAM)
 ![vogel_result](https://github.com/faridnec/vogels-approx-method/blob/main/img/output.png?raw=true)
-### Overview
+## Overview
 The example transportation problem for the output above is as follows
-```python
-supply = np.array([22, 25, 10])
-demand = np.array([8, 8, 12, 29])
-cost_matrix = np.array([
-    [10, 19, 5, 7],
-    [13, 2, 7, 8],
-    [15, 18, 6, 14]
-])
+```markdown
+                        ------------------------------------------------------------
+                                  | Store 1 | Store 2 | Store 3 | Store 4 | Supply  
+                        ------------------------------------------------------------
+                        Factory 1 |   10    |   19   |   5    |   7     |   22    
+                        Factory 2 |   13    |   2    |   7    |   8     |   25  
+                        Factory 3 |   15    |   18   |   6    |   14    |   10  
+                        ------------------------------------------------------------ 
+                        Demand    |   8     |   8    |   12   |   29    |   57     
+                        ------------------------------------------------------------
 ```
-### Introduction
+## Introduction
 Vogel's Approximation Method (VAM) is an algorithm used for solving transportation problems in linear programming. A transportation problem involves minimizing the cost of transporting goods from multiple suppliers to multiple consumers. Vogel's method provides an iterative approach to find an initial feasible solution, which can then be improved using other optimization techniques.
 
 Reference:  
@@ -28,14 +30,14 @@ project/
 |-- Readme.md
 ```
 
-### Installation
-This project using numpy library assuming you have got pip on your system. Install numpy on your repository
+## Installation
+This project using numpy library assuming you have got pip installed on your system. Install numpy on your repository
 ```bash
 pip install numpy
 ```
 
-### Output
-Run main_script.py
+## Output
+Run main_script.py by this command
 ```bash
 python main_script.py
 ```

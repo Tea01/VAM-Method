@@ -1,7 +1,8 @@
 import numpy as np  # Importing the NumPy library for numerical operations
+from IPython.display import display
 from .utils import calculate_total_cost, print_allocation, update_supply_demand
 
-def calculate_penalties(cost_matrix, mask):
+def calculate_penalties(cost_matrix, mask, iteration):
     # Initialize arrays to store penalties for each row and column
     row_penalties = np.zeros(cost_matrix.shape[0])
     col_penalties = np.zeros(cost_matrix.shape[1])
@@ -17,6 +18,10 @@ def calculate_penalties(cost_matrix, mask):
         if len(unallocated_indices) > 1:
             sorted_costs = np.sort(cost_matrix[unallocated_indices, j])
             col_penalties[j] = sorted_costs[1] - sorted_costs[0]
+            
+    print(f"\nIteration {iteration}:\n")
+    print(f"Row Penalties: {row_penalties}")
+    print(f"Column Penalties: {col_penalties}")
             
     # Return the calculated row and column penalties
     return row_penalties, col_penalties
@@ -43,14 +48,18 @@ def vogels_approximation_method(supply, demand, cost_matrix):
     mask = np.zeros((num_suppliers, num_consumers), dtype=bool)
     # Initialize a result matrix to store the allocation plan
     result = np.zeros((num_suppliers, num_consumers), dtype=int)
+    iteration = 1
 
     # Continue the loop until all rows and columns have been assigned.
     while True:
         # Calculate penalties for the current state of the cost matrix
-        row_penalties, col_penalties = calculate_penalties(cost_matrix, mask)
+        row_penalties, col_penalties = calculate_penalties(cost_matrix, mask, iteration)
         # Find the maximum penalty across all rows and columns
         max_penalty = max(row_penalties.max(), col_penalties.max())
 
+        #Displaying max penalty
+        print(f"Max Penalty: {max_penalty}")
+        
         # If no penalties are left, break the loop
         if max_penalty == 0:
             break
@@ -65,35 +74,8 @@ def vogels_approximation_method(supply, demand, cost_matrix):
         # Update the mask if the supply or demand of the selected cell becomes zero
         if qty > 0:
             print(f"Allocating {qty} units from Supplier {i+1} to Consumer {j+1}")
+            
+        iteration += 1
         
     # Return the final allocation plan
     return result
-
-
-# Define the supply, demand, and cost matrix for the problem
-
-# EXAMPLE 1
-
-# supply = np.array([22, 25, 10])
-# demand = np.array([8, 8, 12, 29])
-# cost_matrix = np.array([
-#     [10, 19, 5, 7],
-#     [13, 2, 7, 8],
-#     [15, 18, 6, 14]
-# ])
-
-#EXAMPLE 2
-
-# supply = np.array([300, 400, 500])
-# demand = np.array([250, 350, 400, 200])
-# cost_matrix = np.array([
-#     [3, 1, 7, 4],
-#     [2, 6, 5, 9],
-#     [8, 3, 3, 2]
-# ])
-
-# # Solve the transportation problem using Vogel's Approximation Method
-# solution = vogels_approximation_method(supply, demand, cost_matrix)
-# # Print the final transportation plan
-# print("Transportation Plan:")
-# print(solution)
