@@ -1,4 +1,4 @@
-# Vogel Approximation Method (VAM)
+# Vogel Approximation Method (VAM) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/faridnec/vogels-approx-method/blob/farid-main/vogels_am.ipynb)
 ![vogel_result](https://github.com/faridnec/vogels-approx-method/blob/main/img/output.png?raw=true)
 ## Overview
 The example transportation problem for the output above is as follows
