@@ -9,10 +9,10 @@ def calculate_penalties(cost_matrix, mask, iteration):
 
     # Calculate penalties for each row
     for i in range(cost_matrix.shape[0]):
-            unallocated_indices = np.where(~mask[i, :])[0]  # Find indices of unallocated cells in the row
-            if len(unallocated_indices) > 1:  # Check if there are more than one unallocated cells
-                sorted_costs = np.sort(cost_matrix[i, unallocated_indices])  # Sort the costs of these cells
-                row_penalties[i] = sorted_costs[1] - sorted_costs[0]  # Calculate penalty as difference between the two smallest costs
+        unallocated_indices = np.where(~mask[i, :])[0]
+        if len(unallocated_indices) > 1:
+            sorted_costs = np.sort(cost_matrix[i, unallocated_indices])
+            row_penalties[i] = sorted_costs[1] - sorted_costs[0]
 
     # Calculate penalties for each column
     for j in range(cost_matrix.shape[1]):
