@@ -8,10 +8,10 @@ def calculate_penalties(cost_matrix, mask, iteration):
     col_penalties = np.zeros(cost_matrix.shape[1])
 
     for i in range(cost_matrix.shape[0]):
-            unallocated_indices = np.where(~mask[i, :])[0]
-            if len(unallocated_indices) > 1:
-                sorted_costs = np.sort(cost_matrix[i, unallocated_indices])
-                row_penalties[i] = sorted_costs[1] - sorted_costs[0]
+        unallocated_indices = np.where(~mask[i, :])[0]
+        if len(unallocated_indices) > 1:
+            sorted_costs = np.sort(cost_matrix[i, unallocated_indices])
+            row_penalties[i] = sorted_costs[1] - sorted_costs[0]
 
     for j in range(cost_matrix.shape[1]):
         unallocated_indices = np.where(~mask[:, j])[0]
